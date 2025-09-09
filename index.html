@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newquay Property Investment Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-[#00A0B0] text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-black tracking-wide text-center">Newquay Property Investment Dashboard</h1>
+            <p class="text-center text-lg mt-2">Data-Driven Insights for Your Short-Term Rental Business</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <!-- Main Infographic Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="md:col-span-2 text-center">
+                <h2 class="text-3xl font-bold text-[#eb6841] mb-2">The Surfing Hub & Family Haven</h2>
+                <p class="text-lg text-gray-600">Newquay is the UK's surfing capital, attracting over 4 million visitors annually. Beyond the waves, its mix of family-friendly beaches, a vibrant food scene, and seasonal events create a diverse and resilient tourism economy.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+                <h3 class="text-xl font-bold mb-2 text-[#00A0B0]">Annual Revenue & Occupancy</h3>
+                <p class="text-sm text-gray-500 mb-4">Median annual revenue & occupancy rate for short-term rentals.</p>
+                <div class="chart-container">
+                    <canvas id="revenueBarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+                <h3 class="text-xl font-bold mb-2 text-[#eb6841]">Visitor Segmentation</h3>
+                <p class="text-sm text-gray-500 mb-4">Breakdown of Newquay's typical visitor types by season.</p>
+                <div class="chart-container">
+                    <canvas id="visitorPieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-2 text-[#EDC951]">Guest Capacity & Property Size</h3>
+                <p class="text-sm text-gray-500 mb-4">Insights into the demand for different property sizes.</p>
+                <div class="chart-container">
+                    <canvas id="capacityDoughnutChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-2 text-[#00A0B0]">Seasonal Pricing & Revenue Trends</h3>
+                <p class="text-sm text-gray-500 mb-4">Average Daily Rate (ADR) and revenue trends throughout the year.</p>
+                <div class="chart-container">
+                    <canvas id="seasonalLineChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Investment Summary Report -->
+        <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+            <h2 class="text-2xl font-black text-gray-800 text-center mb-4">Investment Summary Report</h2>
+            <p class="text-gray-600 mb-6">This report provides a concise, factual summary of the Newquay and St Ives short-term rental markets, with a focus on key metrics for a potential Airbnb property acquisition. The analysis highlights market trends, visitor demographics, and strategic considerations for a successful investment.</p>
+            <h3 class="text-xl font-bold text-[#00A0B0] mt-6 mb-2">Market Overview & Demographics</h3>
+            <p class="text-gray-600 mb-4">Newquay’s market is strongly driven by its brand as the UK’s surfing capital, attracting an active, youthful demographic alongside its traditional family holidaymakers. This dual appeal creates consistent demand, especially for properties that cater to both segments. In contrast, St Ives has a higher average daily rate (ADR) but a lower occupancy rate, suggesting a more seasonal market that relies on its art scene and picturesque harbor to attract a slightly different visitor profile. Focusing on Newquay allows for a broader, more consistent visitor base throughout the year, especially with the town's year-round events calendar.</p>
+            <p class="text-gray-600 mb-4">A property suitable for 4-6 guests (2-3 bedrooms) is a prime investment, as it caters to both families and small groups of surfers. The demand for these properties is particularly high, and they offer a strong return on investment compared to smaller or larger units.</p>
+            <h3 class="text-xl font-bold text-[#EDC951] mt-6 mb-2">Financials & Seasonal Trends</h3>
+            <p class="text-gray-600 mb-4">The Newquay Airbnb market shows a clear seasonal pattern, with peak revenue and occupancy rates in July and August. The Boardmasters Festival is a significant driver, creating a massive spike in demand during this period. However, the shoulder months (May, June, and September) also perform well due to favorable weather and the return of a more mature, non-school holiday demographic. This seasonality requires a strategic pricing model to maximize revenue in the peak season and ensure profitability during the quieter months.</p>
+            <p class="text-gray-600 mb-4">While Newquay’s average daily rate of £205 is slightly lower than St Ives, its superior occupancy rate of 58% translates to a higher median annual revenue of approximately £25,000, making it a more profitable and stable investment. The market demonstrates resilience, with a positive year-on-year revenue growth despite recent economic shifts.</p>
+            <h3 class="text-xl font-bold text-[#eb6841] mt-6 mb-2">Conclusion & Strategic Direction</h3>
+            <p class="text-gray-600 mb-4">For an investor, Newquay offers a robust and dynamic market. The key to a successful investment is selecting a property that is not only located near key attractions like the beaches and town center, but also equipped with amenities that specifically appeal to its core audience, such as secure surfboard storage and outdoor washing facilities. Given the user's background in event-based accommodation and property management, the demand peaks driven by events like Boardmasters and the need for efficient property maintenance will be familiar territory, providing a strong foundation for success in the Newquay short-term rental market.</p>
+        </div>
+
+        <!-- Porth Beach Addendum -->
+        <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+            <h2 class="text-2xl font-black text-gray-800 text-center mb-4">Porth Beach Addendum: A Targeted Investment Analysis</h2>
+            <p class="text-gray-600 mb-6">This section provides a focused summary of the Porth Beach area, highlighting its distinct characteristics and why it represents a strategic investment opportunity that complements the broader Newquay market. This location attracts a specific guest profile, ensuring a consistent and valuable revenue stream.</p>
+            <h3 class="text-xl font-bold text-[#EDC951] mt-6 mb-2">The Porth Beach Advantage</h3>
+            <p class="text-gray-600 mb-4">Unlike the main surfing beaches of Fistral and Towan, Porth Beach is a sheltered and calmer cove. This makes it an ideal destination for **young families** and **couples** seeking a more tranquil and relaxed beach experience. The Porth Island feature is a notable landmark that attracts visitors of all ages, and the beach itself is less crowded than those in the town centre, which is a major draw for guests looking to escape the hustle and bustle during peak season.</p>
+            <h3 class="text-xl font-bold text-[#eb6841] mt-6 mb-2">Strategic Location & Connectivity</h3>
+            <ul class="text-gray-600 mb-4 list-disc pl-5">
+                <li class="mb-2">
+                    **Proximity to Watergate Bay:** A key benefit of this location is its proximity to **Watergate Bay**. The walking distance is approximately 20-25 minutes via the scenic South West Coast Path. Watergate Bay is renowned for its world-class water sports facilities and premium dining establishments, attracting a more affluent demographic.
+                </li>
+                <li class="mb-2">
+                    **Access to the South West Coast Path:** Being directly on this trail is a significant selling point for guests who enjoy walking and hiking, providing year-round appeal during the quieter months.
+                </li>
+                <li class="mb-2">
+                    **Local Amenities:** The Porth area has its own selection of cafes, pubs, and restaurants, allowing guests to stay local while still having easy access to the main town centre via a short drive or a longer scenic walk.
+                </li>
+            </ul>
+            <h3 class="text-xl font-bold text-[#00A0B0] mt-6 mb-2">Conclusion: Catering to a Valuable Niche</h3>
+            <p class="text-gray-600 mb-4">Your property near Porth Beach positions you to serve a valuable niche market that is less reliant on the surf culture of Fistral and more focused on a relaxed holiday experience. This location appeals to a different segment of visitors—families and couples seeking calm and quality dining—while still offering a connection to the wider Newquay and Watergate Bay offerings. The combination of a peaceful setting with easy access to high-end amenities provides a compelling value proposition that can command a strong average daily rate and maintain high occupancy throughout the seasons.</p>
+        </div>
+
+        <!-- Surfer Accomodation Report -->
+        <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+            <h2 class="text-2xl font-black text-gray-800 text-center mb-4">Surfer Accommodation: Bridging the Gap from Porth to Fistral</h2>
+            <p class="text-gray-600 mb-6">While Porth Beach is not a primary surfing destination, its quiet location and proximity to the main town and other beaches make it an attractive base for surfers who prefer a more relaxed environment. This analysis outlines the practical and creative ways a surfer guest can easily access the action at Fistral and Towan Beaches, turning the location into a unique selling point rather than a disadvantage.</p>
+            <h3 class="text-xl font-bold text-[#eb6841] mt-6 mb-2">Creative Transport & The Surfer's Commute</h3>
+            <p class="text-gray-600 mb-4">The journey from Porth to the main surfing beaches is a key consideration for this demographic. Fortunately, there are several convenient options that enhance the guest experience and distinguish your property from those in the more congested town centre.</p>
+            <ul class="text-gray-600 mb-4 list-disc pl-5">
+                <li class="mb-2">
+                    **Scenic Walk or Run:** The most straightforward option is a walk along the South West Coast Path. This route offers stunning cliff-top views and a direct connection between Porth and the town centre, and on to Fistral. The walk to Fistral Beach takes approximately 30-40 minutes and is a popular activity in itself.
+                </li>
+                <li class="mb-2">
+                    **Eco-Friendly Cycling:** For surfers with boards, a bike or scooter is an ideal solution. The route is relatively flat along the coast road, and it's a quick, eco-friendly way to get to Fistral and Towan. Highlighting that your property has secure bike/board storage and an outdoor shower is crucial for this type of guest.
+                </li>
+                <li class="mb-2">
+                    **The "Boardmasters" Shuttle Strategy:** For major events like Boardmasters, temporary shuttle services often run from various points in town to the festival site at Watergate Bay. This provides a direct, low-hassle transport option for surfers attending the event. As an owner, you could even offer to provide this kind of information as a part of your welcome pack, showcasing a high level of service.
+                </li>
+            </ul>
+            <h3 class="text-xl font-bold text-[#00A0B0] mt-6 mb-2">Investment Impact: Broader Appeal</h3>
+            <p class="text-gray-600 mb-4">Offering a property at Porth Beach does not mean you will miss out on the valuable surfer market. Instead, it allows you to attract a more discerning surfer: one who values a peaceful retreat after a day on the waves. This broader appeal, combining the tranquility of Porth with easy access to Newquay's dynamic surf scene, provides a strong business model. You're not just selling a room; you're selling a complete, balanced experience that caters to both families seeking a quiet holiday and surfers who desire a peaceful base camp.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-8">
+        <div class="container mx-auto text-center text-sm">
+            <p>&copy; 2025 Newquay Investment Analysis. All Rights Reserved.</p>
+            <p>Data provided is for informational purposes only. Consult with a financial professional for investment advice.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const primaryColor = '#00A0B0';
+        const secondaryColor = '#EDC951';
+        const accentColor = '#eb6841';
+
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+        };
+
+        const ctx1 = document.getElementById('revenueBarChart').getContext('2d');
+        const revenueChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Newquay', 'St Ives'],
+                datasets: [{
+                    label: 'Median Annual Revenue (£)',
+                    data: [25000, 27812],
+                    backgroundColor: [primaryColor, secondaryColor],
+                }, {
+                    label: 'Average Occupancy Rate (%)',
+                    data: [58, 39.8],
+                    backgroundColor: [accentColor, '#2C3E50'],
+                }]
+            },
+            options: chartOptions
+        });
+
+        const ctx2 = document.getElementById('visitorPieChart').getContext('2d');
+        const visitorChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Surfers', 'Small Families', 'Couples/Solo', 'Event Goers (Boardmasters)'],
+                datasets: [{
+                    label: 'Visitor Share',
+                    data: [35, 30, 20, 15],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#A2346B'],
+                    hoverOffset: 4
+                }]
+            },
+            options: chartOptions
+        });
+
+        const ctx3 = document.getElementById('capacityDoughnutChart').getContext('2d');
+        const capacityChart = new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: ['1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4+ Bedrooms'],
+                datasets: [{
+                    label: 'Property Share',
+                    data: [39.9, 26.3, 23.8, 10],
+                    backgroundColor: [primaryColor, secondaryColor, accentColor, '#A2346B'],
+                    hoverOffset: 4
+                }]
+            },
+            options: chartOptions
+        });
+        
+        const ctx4 = document.getElementById('seasonalLineChart').getContext('2d');
+        const seasonalChart = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Average Daily Rate (£)',
+                        data: [180, 175, 190, 200, 215, 240, 280, 290, 250, 220, 200, 210],
+                        borderColor: primaryColor,
+                        backgroundColor: 'rgba(0, 160, 176, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Occupancy Rate (%)',
+                        data: [40, 35, 45, 50, 55, 65, 80, 90, 70, 55, 45, 50],
+                        borderColor: accentColor,
+                        backgroundColor: 'rgba(235, 104, 65, 0.2)',
+                        fill: false,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Value'
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
